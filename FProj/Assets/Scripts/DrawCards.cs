@@ -2,18 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Mirror;
 
 public class DrawCards : MonoBehaviour
 {
-    public PlayerManager PlayerManager;
-    
+    public GameObject Card1;
+    public GameObject Card2;
+    public GameObject PlayerArea;
+    public GameObject EnemyArea;
+
+    List<GameObject> cards = new List<GameObject>();
+    void Start()
+    {
+        cards.Add(Card1);
+        cards.Add(Card2);
+    }
 
     public void OnClick()
     {
-        NetworkIdentity nerworkIdentity = NetworkClient.connection.identity;
-        PlayerManager = nerworkIdentity.GetComponent<PlayerManager>();
-        PlayerManager.CmdDealCards();
+        for(var i = 0; i < 5; i++)
+        {
+            GameObject playerCard = Instantiate(cards[UnityEngine.Random.Range(0, cards.Count)], new Vector3(0, 0, 0), Quaternion.identity);
+            playerCard.transform.SetParent(PlayerArea.transform, false);
+
+            GameObject enemyCard = Instantiate(cards[UnityEngine.Random.Range(0, cards.Count)], new Vector3(0, 0, 0), Quaternion.identity);
+            enemyCard.transform.SetParent(EnemyArea.transform, false);
+
+        }
+        Debug.Log("you draw 5 cards");
     }
 
 

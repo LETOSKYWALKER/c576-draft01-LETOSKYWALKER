@@ -913,14 +913,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -718706469973992356, guid: 3187f9d3ab3275444bd3d2068082c41e, type: 3}
-      propertyPath: Card1
-      value: 
-      objectReference: {fileID: 5219211332114279245, guid: 287cfb769c7a949b09d8c9704dddd300, type: 3}
-    - target: {fileID: -718706469973992356, guid: 3187f9d3ab3275444bd3d2068082c41e, type: 3}
-      propertyPath: Card2
-      value: 
-      objectReference: {fileID: 1869617536652370277, guid: 37c4b5fbac85d4cb19c90508022a70ae, type: 3}
     - target: {fileID: 4752904265248449220, guid: 3187f9d3ab3275444bd3d2068082c41e, type: 3}
       propertyPath: m_Name
       value: PlayerManager

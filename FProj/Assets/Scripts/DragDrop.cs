@@ -2,29 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Mirror;
 
-public class DragDrop : NetworkBehaviour
+public class DragDrop : MonoBehaviour
 {
     private bool isDragging = false;
     public GameObject Canvas;
-    public GameObject DropZone;
     private Vector2 startPosition;
-    private bool isDraggable = true;
     private bool isOverDropZone = false;
     private GameObject dropZone;
     private GameObject startParent;
-    public PlayerManager PlayerManager;
 
 
-    private void Start()
+    private void Awake()
     {
         Canvas = GameObject.Find("Canvas");
-        DropZone = GameObject.Find("DropZone");
-        if (!hasAuthority)
-        {
-            isDraggable = false;
-        }
     }
 
     void Update()
@@ -51,7 +42,6 @@ public class DragDrop : NetworkBehaviour
 
     public void StartDrag()
     {
-        if (!isDraggable) return;
         startParent = transform.parent.gameObject;
         startPosition = transform.position;
         
@@ -60,17 +50,10 @@ public class DragDrop : NetworkBehaviour
 
     public void EndDrag()
     {
-        if (!isDraggable) { 
-            return; 
-        }
         isDragging = false;
         if (isOverDropZone)
         {
             transform.SetParent(dropZone.transform, false);
-            isDraggable = false;
-            NetworkIdentity networkIdentity = NetworkClient.connection.identity;
-            PlayerManager = networkIdentity.GetComponent<PlayerManager>();
-            PlayerManager.PlayCard(gameObject);
             Debug.Log("you placed a card");
 
         }
